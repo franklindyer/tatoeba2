@@ -241,6 +241,13 @@ html[dir="rtl"] #logs .content {
     cursor: help;
 }
 
+.comment .comment-outdated-warning {
+    color: gray;
+    display: block;
+    font-size: 12px;
+    margin: 0 10px;
+}
+
 .comment-sentence {
     padding: 16px 16px 10px 16px;
     margin: 8px 7px -8px 7px;

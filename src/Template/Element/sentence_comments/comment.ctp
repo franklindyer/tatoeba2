@@ -155,6 +155,12 @@ if ($sentenceOwnerLink) {
         <?php } ?>
     </md-card-header>
 
+    <?php if ($outdatedWarning) {
+        $outdatedMessage = __('The sentence has changed since this comment was written.');
+        ?>
+        <span class="comment-outdated-warning"><?= $outdatedMessage ?></span>
+    <?php } ?>
+
     <md-divider></md-divider>
 
     <md-card-content class="<?= $commentHidden ? 'inappropriate' : '' ?>">

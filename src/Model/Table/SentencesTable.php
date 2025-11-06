@@ -666,6 +666,7 @@ class SentencesTable extends Table
             'correctness',
             'script',
             'license',
+            'modified',
         ];
 
         if (isset($what['sentenceDetails'])) {

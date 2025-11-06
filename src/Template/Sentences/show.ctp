@@ -142,7 +142,8 @@ echo $this->element('/sentences/navigation', [
                         'comment' => $comment,
                         'menu' => $menu,
                         'replyIcon' => false,
-                        'hideSentence' => true
+                        'hideSentence' => true,
+                        'outdatedWarning' => $comment->created < $sentence->modified,
                     )
                 );
             }
