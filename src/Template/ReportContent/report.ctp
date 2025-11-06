@@ -55,6 +55,7 @@ if ($entity instanceof SentenceComment || $entity instanceof Sentence) {
                     ),
                     'replyIcon' => false,
                     'hideSentence' => true,
+                    'outdatedWarning' => false  // The outdated warning is unnecessary on the reporting page, since it does not include the sentence anyways
                 ]
             ) ?>
         </div>

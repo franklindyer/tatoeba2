@@ -56,7 +56,8 @@ $this->Paginator->options(
                 array(
                     'comment' => $comment,
                     'menu' => $menu,
-                    'replyIcon' => $currentUserIsMember
+                    'replyIcon' => $currentUserIsMember,
+                    'outdatedWarning' => $comment->created < $comment->sentence->modified
                 )
             );
         }

@@ -98,7 +98,8 @@ $this->set('title_for_layout', $this->Pages->formatTitle(
                 array(
                     'comment' => $comment,
                     'menu' => $menu,
-                    'replyIcon' => $currentUserIsMember
+                    'replyIcon' => $currentUserIsMember,
+                    'outdatedWarning' => $comment->created < $comment->sentence->modified
                 )
             );
         }
