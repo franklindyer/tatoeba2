@@ -43,6 +43,7 @@ class SentenceCommentsTable extends Table
     {
         $this->belongsTo('Sentences');
         $this->belongsTo('Users');
+        $this->hasMany('Contributions');
 
         $this->addBehavior('Timestamp');
         $this->addBehavior('LimitResults');
@@ -165,6 +166,18 @@ class SentenceCommentsTable extends Table
             ->all();
     }
 
+    public function getSentenceTextAtTimeOfComment($comment) {
+        $sentenceText = "";
+        foreach ($comment->sentence->contributions as $contrib) {
+            if ($contrib->datetime < $comment->created) {
+                $sentenceText = $contrib->text;
+            } else {
+                break;
+            }
+        }
+        return $sentenceText;
+    }
+
     /**
      * Return latest comments.
      *
@@ -185,10 +198,19 @@ class SentenceCommentsTable extends Table
                 'Sentences' => [
                     'Users' => [
                         'fields' => ['id', 'username']
-                    ]
+                    ], 
+                    'Contributions' => function ($q) {
+                        return $q->where(["type" => "sentence"]);
+                    }
                 ]
             ]);
         $query = $this->excludeBots($query);
+        $queryList = $query->toList();
+        
+        foreach ($queryList as &$comment) {
+            $comment->sentenceTextAtTime = $this->getSentenceTextAtTimeOfComment($comment);
+        }
+
         return $query->toList();
     }
 

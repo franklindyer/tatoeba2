@@ -41,6 +41,7 @@ foreach ($sentenceComments as $i=>$comment) {
             'comment' => $comment,
             'menu' => $menu,
             'replyIcon' => $currentUserIsMember,
+            'sentenceAtTimeOfComment' => $comment->sentenceTextAtTime,
             'outdatedWarning' => $comment->created < $comment->sentence->modified
         )
     );

@@ -88,7 +88,15 @@ if ($sentenceOwnerLink) {
     </div>
     <div layout="row" layout-align="start center">
         <div class="text" dir="<?= $langDir ?>" flex>
-            <?= $sentenceText ?>
+            <?php if ($outdatedWarning) { 
+                    echo $sentenceAtTimeOfComment;
+                    ?> <md-icon>warning</md-icon>
+                        <md-tooltip md-direction="top">
+                        <?= __('This sentence has been changed since the comment was made.') ?>
+                        </md-tooltip> <?php
+                } else {
+                    echo $sentenceText;  
+                } ?>           
         </div>
         <?php
         echo $this->Languages->icon(
@@ -102,6 +110,7 @@ if ($sentenceOwnerLink) {
         <md-button ng-cloak class="md-icon-button" href="<?= $sentenceUrl ?>">
             <md-icon>info</md-icon>
         </md-button>
+        
     </div>
 </div>
 <?php } ?>
@@ -154,12 +163,6 @@ if ($sentenceOwnerLink) {
             </md-button>
         <?php } ?>
     </md-card-header>
-
-    <?php if ($outdatedWarning) {
-        $outdatedMessage = __('The sentence has changed since this comment was written.');
-        ?>
-        <span class="comment-outdated-warning"><?= $outdatedMessage ?></span>
-    <?php } ?>
 
     <md-divider></md-divider>
 
